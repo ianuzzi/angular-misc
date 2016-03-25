@@ -2,13 +2,13 @@
 var angularApp = angular.module('angularApp', []);
 
 // CONTROLLERS
-angularApp.controller('mainController', function ($scope, $log) {
-	$log.log('Hello');
-	$log.info('Hello');
-	$log.warn('Hello');
-	$log.debug('Hello');
-	$log.error('Hello');
-});
+angularApp.controller('mainController', ['$scope', '$timeout', function($scope, $timeout){
+
+	$scope.name = "Art";
+	$timeout(function(){
+		$scope.name = "Everybody";
+	}, 3000);
+}]);
 
 
 
