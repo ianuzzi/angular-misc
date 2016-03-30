@@ -24,16 +24,45 @@ angularApp.config(function($routeProvider){
 
 });
 
-// CONTROLLERS
-angularApp.controller('mainController', ['$scope', '$log', function($scope, $log){
+// CUSTOM SERVICES
 
-	$scope.name = 'Main';
+angularApp.service('nameService', function() {
+
+	var self = this;
+	this.name = "John Doe";
+
+	this.namelength = function() {
+		return self.name.length;
+	};
+
+});
+
+
+// CONTROLLERS
+angularApp.controller('mainController', ['$scope', '$log', 'nameService', function($scope, $log, nameService){
+
+	$scope.name = nameService.name;
+
+	$scope.$watch('name', function() {
+		nameService.name = $scope.name;
+		$log.log(nameService.name);
+
+	});
+
+	$log.log(nameService.name);
+	$log.log(nameService.namelength());
 
 }]);
 
-angularApp.controller('secondController', ['$scope', '$log', '$routeParams', function($scope, $log, $routeParams){
+angularApp.controller('secondController', ['$scope', '$log', '$routeParams', 'nameService', function($scope, $log, $routeParams, nameService){
 
-	$scope.num = $routeParams.num || 1; // if first item exists, us it, otherwise use 1
+	$scope.num = $routeParams.num || 1;
+
+	$scope.name = nameService.name;
+
+	$scope.$watch('name', function() {
+		nameService.name = $scope.name;
+	});
 
 }]);
 
