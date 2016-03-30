@@ -15,6 +15,11 @@ angularApp.config(function($routeProvider){
 		.when('/second', {
 			templateUrl: 'pages/second.html', // get this html
 			controller: 'secondController' // and bind it to this controller
+		})		
+
+		.when('/second/:num', {
+			templateUrl: 'pages/second.html', // get this html
+			controller: 'secondController' // and bind it to this controller
 		})
 
 });
@@ -26,9 +31,9 @@ angularApp.controller('mainController', ['$scope', '$log', function($scope, $log
 
 }]);
 
-angularApp.controller('secondController', ['$scope', '$log', function($scope, $log){
+angularApp.controller('secondController', ['$scope', '$log', '$routeParams', function($scope, $log, $routeParams){
 
-	$scope.name = 'Second'
+	$scope.num = $routeParams.num || 1; // if first item exists, us it, otherwise use 1
 
 }]);
 
