@@ -46,28 +46,14 @@ angularApp.directive("searchResult", function() {
 			personObj: "=personObject",
 			formattedAddressFunction: "&"
 		},
-		compile: function(elem, attrs){
-			console.log('Compiling...');
-			// elem.removeAttr('class'); // We can catch things and modify them on the fly here.
-			console.log(elem.html());
-
-			return {
-				pre: function(scope, elements, attrs){
-					console.log('Pre-linking...');
-					console.log(elements);
-				},
-				
-				post: function(scope, elements, attrs){
-					console.log('Post-linking...');
-					console.log(scope);
-					if (scope.personObj.name == 'Jane Doe') {
-						elements.removeAttr('class');
-					}
-					console.log(elements);
-				}
+		link: function(scope, elements, attrs){
+			console.log('Linking...');
+			console.log(scope);
+			if (scope.personObj.name == 'Jane Doe') {
+				elements.removeAttr('class');
 			}
+			console.log(elements);
 		}
-
 	};
 });
 
