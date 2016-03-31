@@ -39,8 +39,14 @@ angularApp.service('nameService', function() {
 
 angularApp.directive("searchResult", function() {
 	return {
+		restrict: 'E',
 		templateUrl: 'directives/searchresult.html',
-		replace: true
+		replace: true,
+		scope: {
+			personName: "@",
+			personAdd: "@personAddress"
+		}
+
 	};
 });
 
@@ -48,7 +54,10 @@ angularApp.directive("searchResult", function() {
 // CONTROLLERS
 angularApp.controller('mainController', ['$scope', '$log', 'nameService', function($scope, $log, nameService){
 
-
+	$scope.person = {
+		name: 'John Doe',
+		address: '555 Main Street, New York, NY 11111'
+	}
 
 }]);
 
