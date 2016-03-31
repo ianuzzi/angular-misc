@@ -43,7 +43,8 @@ angularApp.directive("searchResult", function() {
 		templateUrl: 'directives/searchresult.html',
 		replace: true,
 		scope: {
-			personObj: "=personObject"
+			personObj: "=personObject",
+			formattedAddressFunction: "&"
 		}
 
 	};
@@ -55,8 +56,17 @@ angularApp.controller('mainController', ['$scope', '$log', 'nameService', functi
 
 	$scope.person = {
 		name: 'John Doe',
-		address: '555 Main Street, New York, NY 11111'
+		address: '555 Main Street',
+		city: 'New York',
+		state: 'NY',
+		zip: '11111'
 	}
+
+	$scope.formattedAddress = function(person) {
+
+		return person.address + ', ' + person.city + ', ' + person.state + ' ' + person.zip;
+
+	};
 
 }]);
 
