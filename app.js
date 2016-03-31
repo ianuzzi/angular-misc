@@ -46,14 +46,7 @@ angularApp.directive("searchResult", function() {
 			personObj: "=personObject",
 			formattedAddressFunction: "&"
 		},
-		link: function(scope, elements, attrs){
-			console.log('Linking...');
-			console.log(scope);
-			if (scope.personObj.name == 'Jane Doe') {
-				elements.removeAttr('class');
-			}
-			console.log(elements);
-		}
+		transclude: true
 	};
 });
 
