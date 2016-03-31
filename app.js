@@ -43,8 +43,7 @@ angularApp.directive("searchResult", function() {
 		templateUrl: 'directives/searchresult.html',
 		replace: true,
 		scope: {
-			personName: "@",
-			personAdd: "@personAddress"
+			personObj: "=personObject"
 		}
 
 	};
